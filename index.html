@@ -1,0 +1,64 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>HowTo: Mini Example "Leaflet Map"</title>
+    <!-- leaflet.css and leaflet.js from external -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+
+</head>
+
+<body>
+    <div id='MyMap' style='height: 800px; width: 100%;'></div>
+    <!-- OSM-Basic map, included and centred  -->
+    <!-- 
+    <script type='text/javascript'>
+        var MyMap = L.map('MyMap').setView([48.220555, 16.375000], 15);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            'attribution': 'Map Data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> Helpers',
+            'useCache': true
+        }).addTo(MyMap);
+    </script>
+    -->
+    <!-- OSM-Basic map, included and centred  -->
+    <script>
+        var MyMap = L.map('MyMap').setView([48.220555, 16.375000], 15);
+        L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}', {
+            attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            subdomains: 'abcd',
+            minZoom: 0,
+            maxZoom: 20,
+            ext: 'png'
+        }).addTo(MyMap);
+    </script>
+    <!-- Referencing Waypoints -->
+    <script>
+        // marker
+        var marker = L.marker([48.219555, 16.374000]).addTo(MyMap);
+        var popup = marker.bindPopup('<b>We need smarter solutions!</b><br/>Another busted waste bin ...');
+        // circles
+        var circle = L.circle([48.223685, 16.375130], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 100,
+        }).addTo(MyMap);
+        // polygone 
+        var polygon = L.polygon([
+            [48.220, 16.375],
+            [48.216, 16.370],
+            [48.212, 16.378],
+        ], {
+            color: 'green',
+            weight: 4,
+            opacity: .7,
+            dashArray: '20,15',
+            lineJoin: 'round',
+        }).addTo(MyMap);
+    </script>
+
+</body>
+
+</html>
